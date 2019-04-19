@@ -22,7 +22,8 @@
   "author": "Matthew Davidson <matthew.davidson@skyscanner.net>",
   "license": "Apache-2.0",
   "dependencies": {
-    "find-parent-dir": "^0.3.0"
+    "find-parent-dir": "^0.3.0",
+    "mock-fs": "^4.8.0"
   },
   "devDependencies": {
     "jest": "^24.1.0"

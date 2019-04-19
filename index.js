@@ -7,15 +7,15 @@ function sassFileExists(filePath) {
     filePath = filePath + '.scss';
   }
   if (fs.existsSync(filePath)) { // e.g. file.scss  - regular file
-    return true;
+    return filePath;
   }
   var fileName = path.basename(filePath);
   var directory = path.dirname(filePath);
   var partialFilePath = path.join(directory, '_' + fileName);
   if (fs.existsSync(partialFilePath)) { // e.g. _file.scss  - partials
-    return true;
+    return filePath;
   }
-  return false;
+  return null;
 }
 
 function resolve(targetUrl, source) {
@@ -33,8 +33,9 @@ function resolve(targetUrl, source) {
     return directoryPath;
   }
 
-  if (sassFileExists(filePath)) {
-    return filePath;
+  var sassFilePath = sassFileExists(filePath);
+  if (sassFilePath !== null) {
+    return sassFilePath;
   }
 
   return resolve(targetUrl, path.dirname(packageRoot));
